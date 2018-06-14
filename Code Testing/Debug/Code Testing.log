@@ -1,0 +1,4 @@
+﻿  Application.cpp
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Code Testing.vcxproj -> D:\Documents\Development\Programming\C++\My Programs\Summit-Productions--OpenGL\Debug\Code Testing.exe
+  Code Testing.vcxproj -> D:\Documents\Development\Programming\C++\My Programs\Summit-Productions--OpenGL\Debug\Code Testing.pdb (Partial PDB)
