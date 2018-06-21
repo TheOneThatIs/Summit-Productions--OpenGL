@@ -75,11 +75,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Code Testing\Dependencies\glfw-3.2.1.bin.WIN32\include;$(SolutionDir)Code Testing\Dependencies\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw-3.2.1.bin.WIN32\include;$(SolutionDir)Dependencies\GLEW\include;%(AdditionalIncludeDirectories);$(SolutionDir)Engine\Source\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Code Testing\Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(SolutionDir)Code Testing\Dependencies\GLEW\lib\Release\$(Platform)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(SolutionDir)Dependencies\GLEW\lib\Release\$(Platform)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -88,11 +88,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Code Testing\Dependencies\glfw-3.2.1.bin.WIN64\include;$(SolutionDir)Code Testing\Dependencies\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw-3.2.1.bin.WIN64\include;$(SolutionDir)Dependencies\GLEW\include;%(AdditionalIncludeDirectories);$(SolutionDir)Engine\Source\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Code Testing\Dependencies\glfw-3.2.1.bin.WIN64\lib-vc2015;$(SolutionDir)Code Testing\Dependencies\GLEW\lib\Release\$(Platform)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw-3.2.1.bin.WIN64\lib-vc2015;$(SolutionDir)Dependencies\GLEW\lib\Release\$(Platform)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -103,13 +103,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Code Testing\Dependencies\glfw-3.2.1.bin.WIN32\include;$(SolutionDir)Code Testing\Dependencies\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw-3.2.1.bin.WIN32\include;$(SolutionDir)Dependencies\GLEW\include;%(AdditionalIncludeDirectories);$(SolutionDir)Engine\Source\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Code Testing\Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(SolutionDir)Code Testing\Dependencies\GLEW\lib\Release\$(Platform)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(SolutionDir)Dependencies\GLEW\lib\Release\$(Platform)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -120,13 +120,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Code Testing\Dependencies\glfw-3.2.1.bin.WIN64\include;$(SolutionDir)Code Testing\Dependencies\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw-3.2.1.bin.WIN64\include;$(SolutionDir)Dependencies\GLEW\include;%(AdditionalIncludeDirectories);$(SolutionDir)Engine\Source\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Code Testing\Dependencies\glfw-3.2.1.bin.WIN64\lib-vc2015;$(SolutionDir)Code Testing\Dependencies\GLEW\lib\Release\$(Platform)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\glfw-3.2.1.bin.WIN64\lib-vc2015;$(SolutionDir)Dependencies\GLEW\lib\Release\$(Platform)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -135,6 +135,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Basic.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engine\Engine.vcxproj">
+      <Project>{be6e5a65-69ec-4854-b8ed-56f5e3ddcbe1}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
