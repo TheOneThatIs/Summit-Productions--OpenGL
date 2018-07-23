@@ -1,10 +1,16 @@
 #shader vertex
 #version 330 core
 
-layout(location=0) in vec4 position;
+layout(location = 0) in vec4 position;
+layout(location = 1) in vec2 texCoord;
+
+out vec2 vTexCoord;
+
+uniform mat4 uModelViewProj;
 
 void main(){
-	gl_Position = position;
+	gl_Position = uModelViewProj *position;
+	vTexCoord = texCoord;
 };
 
 
@@ -15,6 +21,12 @@ void main(){
 
 layout(location = 0) out vec4 color;
 
+in vec2 vTexCoord;
+
+uniform vec4 uColor;
+uniform sampler2D uTexture;
+
 void main(){
-	color = vec4(1.0, 0.0, 0.0, 1.0);
+	vec4 texColor = texture(uTexture, vTexCoord);
+	color = texColor;
 };

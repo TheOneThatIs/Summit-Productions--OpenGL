@@ -1,2 +1,5 @@
-﻿  Shader.cpp
+﻿  IndexBuffer.cpp
+  Shader.cpp
+  VertexBuffer.cpp
+  ArrayBuffer.cpp
   Engine.vcxproj -> D:\Documents\Development\Programming\C++\My Programs\Summit-Productions--OpenGL\x64\Release\Engine.lib

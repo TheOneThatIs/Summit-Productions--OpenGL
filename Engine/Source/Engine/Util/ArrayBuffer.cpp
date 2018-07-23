@@ -4,8 +4,8 @@
 
 namespace toti {
 	ArrayBuffer::ArrayBuffer() {
-		glGenBuffers(1, &bufferID);
-		glBindBuffer(GL_ARRAY_BUFFER, bufferID);
+		glGenBuffers(1, &ibo);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 	}
 
 	void ArrayBuffer::fill(GLuint buffer, GLsizei size, void *data, GLenum usage) {

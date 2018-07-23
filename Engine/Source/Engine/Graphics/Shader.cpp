@@ -3,22 +3,29 @@
 #include<sstream>
 #include<GL\glew.h>
 #include<iostream>
-
+#include"Engine\Util\HelperFuntions.hpp"
 
 namespace toti {
-	struct Shader::ShaderSource {
-		std::string vertexSource;
-		std::string fragmentSource;
-	};
 
-	Shader::Shader() {
-		ShaderSource source = parseShader("Resources/Shaders/Basic.shader");
-		programID = createProgram(source.vertexSource, source.fragmentSource);
+	Shader::Shader(const std::string& filepath) : filepath(filepath), rendererID(0) {
+		ShaderSource source = parseShader(filepath);
+		rendererID = createProgram(source.vertexSource, source.fragmentSource);
+	}
+	Shader::~Shader() {
+		callGL(glDeleteProgram(rendererID));
 	}
 
-	//**********
 
-	Shader::ShaderSource Shader::parseShader(const std::string& filepath) {
+
+	void Shader::bind() const {
+		callGL(glUseProgram(rendererID));
+	}
+	void Shader::unbind() const {
+		callGL(glUseProgram(0));
+	}
+
+
+	ShaderSource Shader::parseShader(const std::string& filepath) {
 		enum class ShaderType {
 			NONE = -1, VERTEX = 0, FRAGMENT = 1
 		};
@@ -46,8 +53,8 @@ namespace toti {
 	unsigned int Shader::compileShader(unsigned int type, const std::string& source) {
 		unsigned int id = glCreateShader(type);
 		const char* src = source.c_str();
-		glShaderSource(id, 1, &src, nullptr);
-		glCompileShader(id);
+		callGL(glShaderSource(id, 1, &src, nullptr));
+		callGL(glCompileShader(id));
 
 		// Error Checking
 		int result;
@@ -71,23 +78,40 @@ namespace toti {
 		unsigned int vs = compileShader(GL_VERTEX_SHADER, vertexShader);
 		unsigned int fs = compileShader(GL_FRAGMENT_SHADER, fragmentShader);
 
-		glAttachShader(program, vs);
-		glAttachShader(program, fs);
-		glLinkProgram(program);
-		glValidateProgram(program);
+		callGL(glAttachShader(program, vs));
+		callGL(glAttachShader(program, fs));
+		callGL(glLinkProgram(program));
+		callGL(glValidateProgram(program));
 
-		glDeleteShader(vs);
-		glDeleteShader(fs);
+		callGL(glDeleteShader(vs));
+		callGL(glDeleteShader(fs));
 
 		return program;
 	}
 
-	void Shader::deleteProgram() {
-		glDeleteProgram(programID);
+	void Shader::setUniform1i(const std::string& name, int value) {
+		callGL(glUniform1i(getUniformLocation(name), value));
+	}
+	void Shader::setUniform1f(const std::string& name, float value) {
+		callGL(glUniform1f(getUniformLocation(name), value));
+	}
+	void Shader::setUniform4f(const std::string& name, float v0, float v1, float v2, float v3) {
+		callGL(glUniform4f(getUniformLocation(name), v0, v1, v2, v3));
 	}
 
-	// Getters
-	unsigned int Shader::getProgramID() {
-		return programID;
+	void Shader::setUniformMat4f(const std::string& name, glm::mat4 matrix) {
+		callGL(glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, &matrix[0][0]));
+	}
+
+	int Shader::getUniformLocation(const std::string& name) {
+		if (uniformLocationCache.find(name) != uniformLocationCache.end())
+			return uniformLocationCache[name];
+
+		int location = glGetUniformLocation(rendererID, name.c_str());
+		if (location == -1)
+			std::cout << "WARNING: Uniform '" << name << "' doesn't exist!" << std::endl;
+		
+		uniformLocationCache[name] = location;
+		return location;
 	}
 }
